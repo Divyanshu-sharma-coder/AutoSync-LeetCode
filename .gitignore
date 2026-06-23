@@ -1,0 +1,53 @@
+# Build and distribution
+dist/
+build/
+*.zip
+*.tar.gz
+*.crx
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+secrets.json
+*.pem
+*.key
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# Logs and diagnostics
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# Testing
+coverage/
+.nyc_output
+
+# Project specific
+FILE_MANIFEST.md
+QUICKSTART.md
+IMPLEMENTATION_SUMMARY.md
+prd_notes.md
+milestone_0_architecture.md

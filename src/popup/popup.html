@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode to GitHub Sync</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body style="width: 380px; min-height: 450px; margin: 0; box-sizing: border-box;">
+    <div class="container">
+        <header class="header">
+            <h1 class="title">LeetCode → GitHub</h1>
+            <p class="subtitle">Sync your accepted solutions automatically</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Status Section -->
+            <section id="statusSection" class="section hidden">
+                <div class="status-box success">
+                    <div class="status-icon">✓</div>
+                    <div class="status-text">
+                        <p class="status-title">Connected</p>
+                        <p class="status-user" id="statusUser"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Authentication Section -->
+            <section id="authSection" class="section">
+                <h2 class="section-title">🔐 Authentication</h2>
+
+                <!-- Master PIN Input -->
+                <div class="form-group">
+                    <label for="masterPin" class="label">Master PIN</label>
+                    <input 
+                        type="password" 
+                        id="masterPin" 
+                        class="input" 
+                        placeholder="Enter a secure PIN (4-32 characters)"
+                        autocomplete="off"
+                    >
+                    <p class="help-text">Used to encrypt your GitHub token locally</p>
+                </div>
+
+                <!-- GitHub Token Input -->
+                <div class="form-group">
+                    <label for="githubToken" class="label">GitHub Personal Access Token</label>
+                    <input 
+                        type="password" 
+                        id="githubToken" 
+                        class="input" 
+                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        autocomplete="off"
+                    >
+                    <p class="help-text">
+                        <a href="https://github.com/settings/tokens" target="_blank" class="link">Create a token</a>
+                        with repo permissions
+                    </p>
+                </div>
+
+                <!-- Authenticate Button -->
+                <button id="authenticateBtn" class="button button-primary">
+                    <span class="button-text">Authenticate</span>
+                    <span class="button-spinner hidden"></span>
+                </button>
+
+                <div id="authError" class="error-message hidden"></div>
+            </section>
+
+            <!-- Repository Configuration Section -->
+            <section id="repoSection" class="section hidden">
+                <h2 class="section-title">📦 Repository Configuration</h2>
+
+                <!-- Repository Search -->
+                <div class="form-group">
+                    <label for="repoSearch" class="label">Select Target Repository</label>
+                    <div class="search-container">
+                        <input 
+                            type="text" 
+                            id="repoSearch" 
+                            class="input" 
+                            placeholder="Search repositories..."
+                            autocomplete="off"
+                        >
+                        <div id="repoDropdown" class="dropdown hidden">
+                            <div id="repoList" class="repo-list"></div>
+                        </div>
+                    </div>
+                    <p class="help-text">Your accepted solutions will be synced here</p>
+                </div>
+
+                <!-- Selected Repository Display -->
+                <div id="selectedRepoBox" class="repo-box hidden">
+                    <div class="repo-info">
+                        <p class="repo-name" id="selectedRepoName"></p>
+                        <p class="repo-description" id="selectedRepoDescription"></p>
+                    </div>
+                    <button id="changeRepoBtn" class="button button-secondary">Change</button>
+                </div>
+
+                <!-- Save Repository Button -->
+                <button id="saveRepoBtn" class="button button-primary hidden">
+                    <span class="button-text">Save Repository</span>
+                    <span class="button-spinner hidden"></span>
+                </button>
+
+                <div id="repoError" class="error-message hidden"></div>
+            </section>
+
+            <!-- Queue Status Section -->
+            <section id="queueSection" class="section hidden">
+                <h2 class="section-title">📋 Sync Queue</h2>
+
+                <div class="queue-stats">
+                    <div class="stat-box">
+                        <p class="stat-label">Total Tasks</p>
+                        <p class="stat-value" id="totalTasks">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <p class="stat-label">Pending</p>
+                        <p class="stat-value" id="pendingTasks">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <p class="stat-label">Ready</p>
+                        <p class="stat-value" id="readyTasks">0</p>
+                    </div>
+                </div>
+
+                <button id="processQueueBtn" class="button button-secondary">
+                    <span class="button-text">Process Queue</span>
+                    <span class="button-spinner hidden"></span>
+                </button>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settingsSection" class="section hidden">
+                <h2 class="section-title">⚙️ Settings</h2>
+
+                <button id="logoutBtn" class="button button-danger">Logout</button>
+                <button id="clearQueueBtn" class="button button-secondary">Clear Queue</button>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">v1.0.0 • Zero-Server Architecture</p>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

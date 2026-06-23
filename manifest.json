@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode to GitHub Sync",
+  "version": "1.0.0",
+  "description": "Serverless, zero-server sync engine for LeetCode accepted solutions to GitHub",
+ "permissions": [
+    "storage",
+    "scripting",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://api.github.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/*"
+      ],
+      "js": [
+        "src/content/content-script.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/content/interceptor.js"],
+      "matches": ["https://leetcode.com/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "LeetCode to GitHub Sync"
+  },
+  "icons": {
+    "16": "icons/icon48.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon48.png"
+  }
+}
